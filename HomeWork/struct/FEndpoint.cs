@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeWork
+﻿namespace HomeWork
 {
     class FEndpoint : RepoEndpoint
     {
@@ -16,15 +10,10 @@ namespace HomeWork
             return listEndpoint.Count == 0;
         }
 
-        public int getListSize() {
-
-            return listEndpoint.Count;
-        }
         /* ############# INSERT ############# */ // ----------------------- OK
         public bool Insert(Endpoint ep)
         {
             bool val = false;
-            //validar se existe SN do endpoint na lista
             if (listEndpoint.Any(x => x.SerialNumber == ep.SerialNumber))
             {
                 val = true;
@@ -39,13 +28,14 @@ namespace HomeWork
                 listEndpoint.Add(ep);
                 return true;
             }
-            //throw new NotImplementedException();
+
         }
 
         /* ############# EDIT ############# */ // ----------------------- OK
         public bool Edit(Endpoint ep)
         {
-            if (listEndpoint.Any(x => x.SerialNumber == ep.SerialNumber)) {
+            if (listEndpoint.Any(x => x.SerialNumber == ep.SerialNumber))
+            {
                 listEndpoint.Update(x => x.SwitchState = ep.SwitchState);
                 return true;
             }
@@ -53,11 +43,11 @@ namespace HomeWork
             {
                 return false;
             }
-            //throw new NotImplementedException();
         }
 
         /* ############# DELETE ############# */ // ----------------------- OK
-        public bool validDelete(string sNID) {
+        public bool validDelete(string sNID)
+        {
             if (!listEndpoint.Any(x => x.SerialNumber == sNID))
             {
                 return false;
@@ -73,7 +63,6 @@ namespace HomeWork
             var itemDel = listEndpoint.First(x => x.SerialNumber == sNID);
             listEndpoint.Remove(itemDel);
             return true;
-            //throw new NotImplementedException();
         }
 
         /* ############# LIST ALL ############# */ // ----------------------- OK
@@ -86,7 +75,7 @@ namespace HomeWork
         /* ############# FIND by SERIAL NUMBER ############# */ // ----------------------- OK
         public Endpoint Find(string sNID)
         {
-                return listEndpoint.FirstOrDefault(p => p.SerialNumber == sNID);
+            return listEndpoint.FirstOrDefault(p => p.SerialNumber == sNID);
         }
 
         /* ############# GET METER MODEL STRING ############# */ // ----------------------- OK
@@ -96,13 +85,17 @@ namespace HomeWork
             if (ID == 16)
             {
                 lblMM = "NSX1P2W";
-            }else if (ID == 17)
+            }
+            else if (ID == 17)
             {
                 lblMM = "NSX1P3W";
-            }else if (ID == 18)
+            }
+            else if (ID == 18)
             {
                 lblMM = "NSX2P3W";
-            }else if (ID == 19){
+            }
+            else if (ID == 19)
+            {
                 lblMM = "NSX3P4W";
             }
             return lblMM;
@@ -112,18 +105,22 @@ namespace HomeWork
         /* ############# SET METER MODEL ID ############# */ // ----------------------- OK
         public int setMMID(string ID)
         {
-            int setID  = 0;
-            if (ID == "NSX1P2W")
+            int setID = 0;
+            if (ID == "NSX1P2W" || ID == "nsx1p2w")
             {
                 setID = 16;
-            }else if (ID == "NSX1P3W")
+            }
+            else if (ID == "NSX1P3W" || ID == "nsx1p3w")
             {
                 setID = 17;
-            }else if (ID == "NSX2P3W") {
-                setID = 18;
-            }else if(ID == "NSX3P4W")
+            }
+            else if (ID == "NSX2P3W" || ID == "nsx2p3w")
             {
-                setID= 19;
+                setID = 18;
+            }
+            else if (ID == "NSX3P4W" || ID == "nsx3p4w")
+            {
+                setID = 19;
             }
             return setID;
             //throw new NotImplementedException();
@@ -133,13 +130,15 @@ namespace HomeWork
         public string getSS(int ss)
         {
             string lblSS = "";
-            if(ss == 0)
+            if (ss == 0)
             {
                 lblSS = "Disconnected";
-            }else if(ss == 1)
+            }
+            else if (ss == 1)
             {
                 lblSS = "Connected";
-            }else if(ss == 2)
+            }
+            else if (ss == 2)
             {
                 lblSS = "Armed";
             }

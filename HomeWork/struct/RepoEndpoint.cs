@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeWork
+﻿namespace HomeWork
 {
-    interface RepoEndpoint{
+    interface RepoEndpoint
+    {
         List<Endpoint> ListAll();
         bool Insert(Endpoint ep);
         Endpoint Find(string sNID);
